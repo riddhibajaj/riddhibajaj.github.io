@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riddhi Bajaj | Data Scientist</title>
+    <title>Riddhi Bajaj</title>
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>">
+
     <style>
         * {
             margin: 0;
@@ -13,213 +18,1280 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
+            color: #e0e0e0;
+            background: #1a1a1a;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-mode {
+            background: #fff;
             color: #333;
         }
 
-        nav {
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animated Background */
+        .animated-bg {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
         }
 
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+        body.light-mode .orb {
+            opacity: 0.3;
         }
 
-        nav a:hover {
-            color: #0066cc;
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            top: -100px;
+            left: -100px;
         }
 
-        .hero {
-            min-height: 100vh;
+        .orb2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            top: 50%;
+            right: -50px;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            bottom: -100px;
+            left: 30%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        /* Loading Skeleton */
+        .skeleton-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        body.light-mode .skeleton-loader {
+            background: #fff;
+        }
+
+        .skeleton-loader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #333;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        body.light-mode .spinner {
+            border-color: #f0f0f0;
+            border-top-color: #007bff;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-text {
+            font-size: 1rem;
+            color: #999;
+            font-weight: 500;
+        }
+
+        /* Navigation */
+        .nav-ribbon {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .nav-ribbon {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .nav-logo {
+            color: #1a1a1a;
+        }
+
+        .nav-logo:hover {
+            color: #667eea;
+        }
+
+        body.light-mode .nav-logo:hover {
+            color: #007bff;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #999;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        body.light-mode .nav-links a {
+            color: #666;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        body.light-mode .nav-links a:hover {
+            color: #007bff;
+        }
+
+        .nav-links a.active {
+            color: #667eea;
+        }
+
+        body.light-mode .nav-links a.active {
+            color: #007bff;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #667eea;
+        }
+
+        body.light-mode .nav-links a.active::after {
+            background: #007bff;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            width: 50px;
+            height: 26px;
+            background: #444;
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        body.light-mode .theme-toggle {
+            background: #e0e0e0;
+        }
+
+        .theme-toggle::before {
+            content: '🌙';
+            position: absolute;
+            top: 2px;
+            left: 26px;
+            width: 22px;
+            height: 22px;
+            background: #fff;
+            border-radius: 50%;
+            transition: left 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode .theme-toggle::before {
+            content: '☀️';
+            left: 2px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        body.light-mode .mobile-menu-btn {
+            color: #333;
+        }
+
+        /* Scroll to Top */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
         }
 
-        .hero h1 {
+        body.light-mode .scroll-to-top {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        .scroll-to-top::before {
+            content: '↑';
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* HOME SECTION */
+        .home-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding-top: calc(60px + 4rem);
+        }
+
+        .home-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5.5rem;
+            align-items: center;
+        }
+
+        .photo-container {
+            position: relative;
+            opacity: 0;
+            animation: fadeInLeft 0.8s ease 0.5s forwards;
+            max-width: 340px;
+            margin-left: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .photo-wrapper {
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: #2a2a2a;
+            padding: 6px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.25);
+            width: 340px;
+            height: 340px;
+        }
+
+        body.light-mode .photo-wrapper {
+            background: #fff;
+            box-shadow: 0 10px 40px rgba(0, 123, 255, 0.15);
+        }
+
+        .photo-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-inner {
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        .photo-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .photo-wrapper:hover .photo-inner::before {
+            opacity: 0;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-container {
+            opacity: 0;
+            animation: fadeInRight 0.8s ease 0.7s forwards;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .greeting {
+            font-size: 1.1rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        body.light-mode .greeting {
+            color: #007bff;
+        }
+
+        .name {
             font-size: 3.5rem;
+            font-weight: 700;
+            color: #fff;
             margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
+            line-height: 1.2;
         }
 
-        .hero p {
-            font-size: 1.3rem;
+        body.light-mode .name {
+            color: #1a1a1a;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(102, 126, 234, 0.15);
+            color: #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .role-badge {
+            background: rgba(0, 123, 255, 0.1);
+            color: #007bff;
+            border-color: rgba(0, 123, 255, 0.3);
+        }
+
+        .description {
+            font-size: 1.2rem;
+            color: #999;
+            line-height: 1.8;
             margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s backwards;
+            max-width: 500px;
+            min-height: 65px;
+        }
+
+        body.light-mode .description {
+            color: #666;
         }
 
         .cta-buttons {
             display: flex;
             gap: 1rem;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.4s backwards;
         }
 
         .btn {
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            text-decoration: none;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-primary {
-            background: white;
-            color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        body.light-mode .btn-primary {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
         }
 
         .btn-secondary {
-            border: 2px solid white;
-            color: white;
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
         }
 
-        .btn:hover {
+        body.light-mode .btn-secondary {
+            background: #fff;
+            color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: #fff;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
+        body.light-mode .btn-secondary:hover {
+            background: #007bff;
+            color: #fff;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 1s ease 2s forwards;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border-left: 2px solid #667eea;
+            border-bottom: 2px solid #667eea;
+            transform: rotate(-45deg);
+            animation: bounce 2s infinite;
+        }
+
+        body.light-mode .scroll-arrow {
+            border-color: #007bff;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: rotate(-45deg) translateY(0);
+            }
+
+            40% {
+                transform: rotate(-45deg) translateY(10px);
+            }
+
+            60% {
+                transform: rotate(-45deg) translateY(5px);
+            }
+        }
+
+        /* PROJECTS SECTION */
+        .projects-section {
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: 100vh;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+        .section-header {
             text-align: center;
-            color: #333;
+            margin-bottom: 3rem;
         }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
+        .section-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
         }
 
-        .profile-img {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        body.light-mode .section-header h1 {
+            color: #1a1a1a;
+        }
+
+        .section-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background: #fff;
+        }
+
+        body.light-mode .section-header h1::after {
+            background: #1a1a1a;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #999;
+            max-width: 700px;
+            margin: 1.5rem auto 0;
+        }
+
+        body.light-mode .section-header p {
+            color: #666;
+        }
+
+        .carousel-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .carousel-wrapper {
+            overflow-x: auto;
+            overflow-y: visible;
+            margin: 0 4rem;
+            scroll-behavior: smooth;
+            padding: 1rem 0;
+        }
+
+        .carousel-track {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            color: white;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
         .project-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            flex: 0 0 calc(33.333% - 1.34rem);
+            background: #2a2a2a;
+            border-radius: 12px;
+            overflow: visible;
+            border: 2px solid #3a3a3a;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        body.light-mode .project-card {
+            background: #fafafa;
+            border-color: #f0f0f0;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
         }
 
-        .project-img {
+        body.light-mode .project-card:hover {
+            box-shadow: 0 12px 24px rgba(0, 123, 255, 0.15);
+            border-color: #007bff;
+        }
+
+        .project-image {
             width: 100%;
             height: 200px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .project-image-fallback {
+            width: 100%;
+            height: 100%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: white;
+        }
+
+        .project-icon {
+            font-size: 4rem;
+            opacity: 0.9;
+        }
+
+        .project-card:nth-child(2) .project-image-fallback {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .project-card:nth-child(3) .project-image-fallback {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .project-card:nth-child(4) .project-image-fallback {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
         }
 
         .project-content {
             padding: 1.5rem;
         }
 
-        .project-content h3 {
-            margin-bottom: 0.5rem;
-            color: #333;
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1rem;
         }
 
-        .tech-tags {
+        body.light-mode .project-title {
+            color: #1a1a1a;
+        }
+
+        .project-stats {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-badge {
+            padding: 0.4rem 0.8rem;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            color: #2e7d32;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .stat-badge {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: #fff;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        body.light-mode .project-description {
+            color: #666;
+        }
+
+        .project-card:hover .project-description {
+            max-height: 150px;
+            opacity: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .tag {
-            background: #e0e7ff;
+            padding: 0.35rem 0.75rem;
+            background: rgba(102, 126, 234, 0.2);
             color: #667eea;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        body.light-mode .tag {
+            background: #e8f4ff;
+            color: #007bff;
+        }
+
+        .project-card:hover .tag {
+            background: #667eea;
+            color: #fff;
+        }
+
+        body.light-mode .project-card:hover .tag {
+            background: #007bff;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        body.light-mode .project-actions {
+            border-top-color: #e0e0e0;
+        }
+
+        .project-card:hover .project-actions {
+            max-height: 60px;
+            opacity: 1;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
             font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        .btn-demo {
+            background: #667eea;
+            color: #fff;
+            border: 2px solid #667eea;
         }
 
-        .skill-category {
-            background: #f8f9fa;
-            padding: 2rem;
+        body.light-mode .btn-demo {
+            background: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-demo:hover {
+            background: #764ba2;
+        }
+
+        body.light-mode .btn-demo:hover {
+            background: #0056b3;
+        }
+
+        .btn-github {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        body.light-mode .btn-github {
+            background: #fff;
+            color: #333;
+            border-color: #333;
+        }
+
+        .btn-github:hover {
+            background: #fff;
+            color: #333;
+        }
+
+        body.light-mode .btn-github:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: #2a2a2a;
+            border: 2px solid #444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            font-size: 1.5rem;
+            color: #999;
+        }
+
+        body.light-mode .carousel-nav {
+            background: #fff;
+            border-color: #e0e0e0;
+            color: #666;
+        }
+
+        .carousel-nav:hover {
+            background: #667eea;
+            border-color: #667eea;
+            color: #fff;
+        }
+
+        body.light-mode .carousel-nav:hover {
+            background: #007bff;
+            border-color: #007bff;
+        }
+
+        .carousel-nav.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .carousel-nav.prev {
+            left: 0;
+        }
+
+        .carousel-nav.next {
+            right: 0;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #444;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .dot {
+            background: #e0e0e0;
+        }
+
+        .dot.active {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+
+        body.light-mode .dot.active {
+            background: #007bff;
+        }
+
+        /* ABOUT SECTION */
+        .about-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: 100vh;
+        }
+
+        .timeline-container {
+            position: relative;
+            overflow-x: auto;
+            padding: 4rem 0 2rem;
+            scrollbar-width: thin;
+            scrollbar-color: transparent transparent;
+        }
+
+        .timeline-container:hover {
+            scrollbar-color: #555 #2a2a2a;
+        }
+
+        body.light-mode .timeline-container:hover {
+            scrollbar-color: #ccc #f0f0f0;
+        }
+
+        .timeline-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .timeline-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .timeline-container:hover::-webkit-scrollbar-track {
+            background: #2a2a2a;
+        }
+
+        body.light-mode .timeline-container:hover::-webkit-scrollbar-track {
+            background: #f0f0f0;
+        }
+
+        .timeline-container::-webkit-scrollbar-thumb {
+            background: transparent;
             border-radius: 10px;
-            border-left: 4px solid #667eea;
         }
 
-        .skill-category h3 {
-            margin-bottom: 1rem;
+        .timeline-container:hover::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+
+        body.light-mode .timeline-container:hover::-webkit-scrollbar-thumb {
+            background: #ccc;
+        }
+
+        .timeline-wrapper {
+            position: relative;
+            min-width: max-content;
+            padding: 0 2rem;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #444;
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+
+        body.light-mode .timeline-line {
+            background: #e0e0e0;
+        }
+
+        .timeline-items {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+            justify-content: center;
+        }
+
+        .timeline-item {
+            flex: 0 0 auto;
+            width: 200px;
+            position: relative;
+        }
+
+        .timeline-item.above {
+            margin-bottom: 5rem;
+        }
+
+        .timeline-item.below {
+            margin-top: 5rem;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 4px solid #1a1a1a;
+            box-shadow: 0 0 0 3px #667eea;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .timeline-dot {
+            background: #007bff;
+            border-color: #fff;
+            box-shadow: 0 0 0 3px #007bff;
+        }
+
+        .timeline-item.above .timeline-dot {
+            bottom: -2.5rem;
+        }
+
+        .timeline-item.below .timeline-dot {
+            top: -2.5rem;
+        }
+
+        .timeline-item.education .timeline-dot {
+            background: #28a745;
+            box-shadow: 0 0 0 3px #28a745;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            transform: translateX(-50%) scale(1.4);
+        }
+
+        .timeline-connector {
+            position: absolute;
+            width: 2px;
+            background: #444;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            transition: background 0.3s ease;
+        }
+
+        body.light-mode .timeline-connector {
+            background: #e0e0e0;
+        }
+
+        .timeline-item.above .timeline-connector {
+            top: 100%;
+            height: 2.5rem;
+        }
+
+        .timeline-item.below .timeline-connector {
+            bottom: 100%;
+            height: 2.5rem;
+        }
+
+        .timeline-item:hover .timeline-connector {
+            background: #667eea;
+        }
+
+        body.light-mode .timeline-item:hover .timeline-connector {
+            background: #007bff;
+        }
+
+        .timeline-item.education:hover .timeline-connector {
+            background: #28a745;
+        }
+
+        body.light-mode .timeline-item.education:hover .timeline-connector {
+            background: #28a745;
+        }
+
+        .timeline-content {
+            background: #2a2a2a;
+            padding: 1.2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid #3a3a3a;
+            cursor: pointer;
+            text-align: center;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        body.light-mode .timeline-content {
+            background: #fafafa;
+            border-color: #f0f0f0;
+        }
+
+        .timeline-item.education .timeline-content {
+            border-color: rgba(40, 167, 69, 0.3);
+        }
+
+        body.light-mode .timeline-item.education .timeline-content {
+            border-color: #e8f5e9;
+        }
+
+        .timeline-item:hover .timeline-content {
+            background: #333;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        body.light-mode .timeline-item:hover .timeline-content {
+            background: #fff;
+            box-shadow: 0 12px 24px rgba(0, 123, 255, 0.15);
+            border-color: #007bff;
+        }
+
+        .timeline-item.education:hover .timeline-content {
+            border-color: #28a745;
+        }
+
+        body.light-mode .timeline-item.education:hover .timeline-content {
+            border-color: #28a745;
+        }
+
+        .timeline-year {
+            font-size: 0.85rem;
             color: #667eea;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
         }
 
-        .skill-category ul {
-            list-style: none;
+        body.light-mode .timeline-year {
+            color: #007bff;
         }
 
-        .skill-category li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e0e0e0;
+        .timeline-item.education .timeline-year {
+            color: #28a745;
         }
 
-        .contact {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .timeline-role {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.4rem;
+            line-height: 1.3;
+            min-height: 2.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .contact h2 {
-            color: white;
+        body.light-mode .timeline-role {
+            color: #1a1a1a;
+        }
+
+        .timeline-company {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 500;
+        }
+
+        body.light-mode .timeline-company {
+            color: #666;
+        }
+
+        .timeline-details {
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #444;
+            font-size: 0.8rem;
+            color: #999;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .timeline-details {
+            border-top-color: #e0e0e0;
+            color: #666;
+        }
+
+        .timeline-item:hover .timeline-details {
+            opacity: 1;
+            max-height: 100px;
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: 80vh;
+        }
+
+        .contact-subtext {
+            font-size: 1.1rem;
+            color: #999;
+            margin-bottom: 4rem;
+            line-height: 1.8;
+        }
+
+        body.light-mode .contact-subtext {
+            color: #666;
         }
 
         .contact-links {
@@ -230,221 +1302,587 @@
         }
 
         .contact-link {
-            display: flex;
+            display: inline-flex;
+            flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
-            color: white;
+            gap: 0.8rem;
+            padding: 1.5rem 2rem;
+            background: #2a2a2a;
+            border: 2px solid #3a3a3a;
+            border-radius: 10px;
+            color: #fff;
             text-decoration: none;
-            font-size: 1.1rem;
-            transition: transform 0.3s;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        body.light-mode .contact-link {
+            background: #fafafa;
+            border-color: #f0f0f0;
+            color: #1a1a1a;
         }
 
         .contact-link:hover {
-            transform: scale(1.1);
+            background: #333;
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+            color: #667eea;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+        body.light-mode .contact-link:hover {
+            background: #fff;
+            border-color: #007bff;
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+            color: #007bff;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            fill: currentColor;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(26, 26, 26, 0.98);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 1rem;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            body.light-mode .nav-links {
+                background: rgba(255, 255, 255, 0.98);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .home-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .photo-container {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .photo-wrapper {
+                width: 250px;
+                height: 250px;
+            }
+
+            .content-container {
+                text-align: center;
+            }
+
+            .description {
+                margin: 0 auto 2rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .scroll-indicator {
+                display: none;
             }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .home-section {
+                padding-top: calc(60px + 3rem);
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .name {
+                font-size: 2rem;
             }
 
-            .profile-img {
-                margin: 0 auto;
+            .cta-buttons {
+                flex-direction: column;
             }
 
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
+            .btn {
+                width: 100%;
+            }
+
+            .section-header h1 {
+                font-size: 2rem;
+            }
+
+            .carousel-wrapper {
+                margin: 0 3rem;
+            }
+
+            .project-card {
+                flex: 0 0 100%;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+            }
+
+            .timeline-item {
+                width: 180px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .contact-link {
+                width: 100%;
             }
         }
     </style>
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    <div class="skeleton-loader" id="loader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
+
+    <div class="animated-bg">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
+
+    <nav class="nav-ribbon">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">riddhibajaj.com</a>
+            <div class="nav-right">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="theme-toggle" id="themeToggle"></div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </div>
     </nav>
 
-    <section id="home" class="hero">
-        <div>
-            <h1>Riddhi Bajaj</h1>
-            <p>Data Scientist | Transforming Sales Insights into Data-Driven Solutions</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-            </div>
-        </div>
-    </section>
+    <div class="scroll-to-top" id="scrollToTop"></div>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="profile-img">RB</div>
-            <div>
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
-                    I'm a data scientist with a unique background in sales, bringing real-world business acumen to
-                    data-driven problem solving. My experience in understanding customer needs and market dynamics
-                    allows me to build solutions that don't just crunch numbers, but drive meaningful business outcomes.
-                </p>
-                <p style="font-size: 1.1rem;">
-                    I specialize in predictive analytics, customer segmentation, and building machine learning models
-                    that translate complex data into actionable insights. My transition from sales to data science gives
-                    me a unique perspective on how to communicate technical findings to non-technical stakeholders.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-img">📊</div>
-                <div class="project-content">
-                    <h3>Customer Churn Prediction</h3>
-                    <p>Built a machine learning model to predict customer churn with 87% accuracy, helping businesses
-                        retain high-value customers through targeted interventions.</p>
-                    <div class="tech-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Scikit-learn</span>
-                        <span class="tag">XGBoost</span>
+    <section class="home-section" id="home">
+        <div class="home-container">
+            <div class="photo-container">
+                <div class="photo-wrapper">
+                    <div class="photo-inner">
+                        <img src="riddhi-bajaj.jpeg" alt="Riddhi Bajaj" class="profile-photo">
                     </div>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="project-img">💰</div>
-                <div class="project-content">
-                    <h3>Sales Forecasting Dashboard</h3>
-                    <p>Developed an interactive dashboard for time-series forecasting that improved sales prediction
-                        accuracy by 35% and streamlined quarterly planning.</p>
-                    <div class="tech-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Prophet</span>
-                        <span class="tag">Tableau</span>
+            <div class="content-container">
+                <div class="greeting">Hello, I'm</div>
+                <h1 class="name">Riddhi Bajaj</h1>
+                <div class="role-badge">Data Science & ML Engineer</div>
+                <p class="description" id="typewriterText"></p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work →</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator" id="scrollIndicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <section class="projects-section" id="projects">
+        <div class="section-header">
+            <h1>Projects</h1>
+        </div>
+
+        <div class="carousel-container">
+            <div class="carousel-nav prev" id="prevBtn">‹</div>
+            <div class="carousel-wrapper">
+                <div class="carousel-track">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <!-- <img src="riddhi-bajaj.jpeg" alt="Riddhi Bajaj"> -->
+                            <div class="project-image-fallback">
+                                <div class="project-icon">📊</div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Titanic Survival Prediction</h3>
+                            <div class="project-stats">
+                                <span class="stat-badge">85.7% Accuracy</span>
+                                <span class="stat-badge">0.901 AUC</span>
+                            </div>
+                            <p class="project-description">Built Random Forest Classifier model to predict Titanic
+                                passenger survival and deployed an interactive Tableau dashboard</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Scikit-Learn</span>
+                                <span class="tag">Tableau</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://public.tableau.com/app/profile/riddhi.bajaj5141/viz/Titanic_Dashboard_17601361185440/Dashboard1"
+                                    target="_blank" class="action-btn btn-demo">Live Demo →</a>
+                                <a href="https://github.com/riddhibajaj/Titanic-Survival-Prediction" target="_blank"
+                                    class="action-btn btn-github">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-image-fallback">
+                                <div class="project-icon">💰</div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Insurance Charges Calculator</h3>
+                            <div class="project-stats">
+                                <span class="stat-badge">R² = 0.87</span>
+                                <span class="stat-badge">RMSE = 0.329</span>
+                            </div>
+                            <p class="project-description">Built a Gradient Boosting regression model and deployed an
+                                interactive Streamlit web app calculator</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Scikit-Learn</span>
+                                <span class="tag">Streamlit</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://insurance-charges-prediction.streamlit.app" target="_blank"
+                                    class="action-btn btn-demo">Live Demo →</a>
+                                <a href="https://github.com/riddhibajaj/Insurance-Charges-Prediction" target="_blank"
+                                    class="action-btn btn-github">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-image-fallback">
+                                <div class="project-icon">📱</div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Telco Customer Churn Prediction</h3>
+                            <div class="project-stats">
+                                <span class="stat-badge">81.3% Accuracy</span>
+                                <span class="stat-badge">0.847 AUC</span>
+                            </div>
+                            <p class="project-description">Built a Two-Class Logistic Regression model with Azure ML
+                                Studio to identify high-risk customers</p>
+                            <div class="project-tags">
+                                <span class="tag">Azure ML Studio</span>
+                                <span class="tag">Excel</span>
+                                <span class="tag">Tableau</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/riddhibajaj/Telco-Churn-Prediction" target="_blank"
+                                    class="action-btn btn-github" style="flex: 1;">View on GitHub →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-image-fallback">
+                                <div class="project-icon">📅</div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">SmartScheduler</h3>
+                            <div class="project-stats">
+                                <span class="stat-badge">500+ Tasks Automated</span>
+                            </div>
+                            <p class="project-description">Built automation scripts using Google Apps Script to sync
+                                Sheets with Calendar and Tasks.</p>
+                            <div class="project-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">Apps Script</span>
+                                <span class="tag">Sheets</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/riddhibajaj/SmartScheduler" target="_blank"
+                                    class="action-btn btn-github" style="flex: 1;">View on GitHub →</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="carousel-nav next" id="nextBtn">›</div>
+        </div>
 
-            <div class="project-card">
-                <div class="project-img">🎯</div>
-                <div class="project-content">
-                    <h3>Market Segmentation Analysis</h3>
-                    <p>Applied clustering algorithms to segment 50,000+ customers, enabling personalized marketing
-                        strategies that increased conversion rates by 23%.</p>
-                    <div class="tech-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">K-Means</span>
-                        <span class="tag">SQL</span>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="section-header">
+            <h1>About Me</h1>
+            <p>With over 6 years of experience in growth strategy and analytics, I’ve learned how data can unlock
+                business growth when translated effectively. My journey has been self-directed, fueled by curiosity,
+                learning, and a passion for solving complex data challenges.</p>
+        </div>
+
+        <div class="timeline-container" id="timeline">
+            <div class="timeline-wrapper">
+                <div class="timeline-line"></div>
+                <div class="timeline-items">
+                    <div class="timeline-item education above">
+                        <div class="timeline-connector"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2019</div>
+                            <div class="timeline-role">BCom Honours</div>
+                            <div class="timeline-company">University of Delhi<br><br></div>
+                            <div class="timeline-details">
+                                <div>Graduated Jun 2019</div>
+                                <div>New Delhi, India</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item below">
+                        <div class="timeline-connector"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2019–2023</div>
+                            <div class="timeline-role">Growth Roles</div>
+                            <div class="timeline-company">GradRight & IndianFolk</div>
+                            <div class="timeline-details">
+                                <div>May 2019 – Jun 2023</div>
+                                <div>Remote</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item education above">
+                        <div class="timeline-connector"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-role">MS Venture Creation</div>
+                            <div class="timeline-company">National University of Singapore</div>
+                            <div class="timeline-details">
+                                <div>Graduated Jun 2023</div>
+                                <div>Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item below">
+                        <div class="timeline-connector"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2023–2024</div>
+                            <div class="timeline-role">Project Lead</div>
+                            <div class="timeline-company">DealStreetAsia</div>
+                            <div class="timeline-details">
+                                <div>Jun 2023 – Jan 2024</div>
+                                <div>Singapore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item below">
+                        <div class="timeline-connector"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2024–2025</div>
+                            <div class="timeline-role">VP of Growth</div>
+                            <div class="timeline-company">DataVinci Analytics</div>
+                            <div class="timeline-details">
+                                <div>May 2024 – Jan 2025</div>
+                                <div>Remote</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item below">
+                        <div class="timeline-connector"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2025–Now</div>
+                            <div class="timeline-role">Data Science Consultant</div>
+                            <div class="timeline-company">Seattle Seahawks</div>
+                            <div class="timeline-details">
+                                <div>Jun 2025 – Present</div>
+                                <div>Seattle, WA</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item education above">
+                        <div class="timeline-connector"></div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2026</div>
+                            <div class="timeline-role">MS Business Analytics</div>
+                            <div class="timeline-company">University of Washington</div>
+                            <div class="timeline-details">
+                                <div>Expected Jun 2026</div>
+                                <div>Tacoma, WA</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="skills">
-        <h2>Skills & Expertise</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>Technical Skills</h3>
-                <ul>
-                    <li>Python (Pandas, NumPy, Scikit-learn)</li>
-                    <li>SQL & Database Management</li>
-                    <li>Machine Learning & Deep Learning</li>
-                    <li>Data Visualization (Tableau, Matplotlib)</li>
-                    <li>Statistical Analysis & A/B Testing</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3>Domain Expertise</h3>
-                <ul>
-                    <li>Sales Analytics & Forecasting</li>
-                    <li>Customer Segmentation</li>
-                    <li>CRM & Business Intelligence</li>
-                    <li>Revenue Optimization</li>
-                    <li>Market Analysis</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3>Soft Skills</h3>
-                <ul>
-                    <li>Stakeholder Communication</li>
-                    <li>Business Strategy</li>
-                    <li>Project Management</li>
-                    <li>Presentation & Storytelling</li>
-                    <li>Cross-functional Collaboration</li>
-                </ul>
-            </div>
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <h1>Let's Connect</h1>
+            <p class="contact-subtext">Want to collaborate or discuss data analytics? I'm always open to new
+                opportunities and connections.</p>
         </div>
-    </section>
 
-    <section id="contact" class="contact">
-        <h2>Let's Connect</h2>
         <div class="contact-links">
-            <a href="mailto:riddhi@example.com" class="contact-link">
-                📧 Email
+            <a href="mailto:riddhib.career@gmail.com" class="contact-link">
+                <svg class="contact-icon" viewBox="0 0 24 24">
+                    <path
+                        d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                <span>Email</span>
             </a>
-            <a href="https://linkedin.com/in/riddhibajaj" class="contact-link" target="_blank">
-                💼 LinkedIn
+            <a href="https://www.linkedin.com/in/riddhibajaj/" target="_blank" class="contact-link">
+                <svg class="contact-icon" viewBox="0 0 24 24">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+                <span>LinkedIn</span>
             </a>
-            <a href="https://github.com/riddhibajaj" class="contact-link" target="_blank">
-                💻 GitHub
+            <a href="https://github.com/riddhibajaj/" target="_blank" class="contact-link">
+                <svg class="contact-icon" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+                <span>GitHub</span>
             </a>
         </div>
     </section>
 
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('loader').classList.add('fade-out'), 800);
+        });
+
+        const theme = localStorage.getItem('theme') || 'dark';
+        if (theme === 'light') document.body.classList.add('light-mode');
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        const text = "Exploring patterns, building models, and visualizing insights that matter.";
+        const el = document.getElementById('typewriterText');
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                el.textContent += text.charAt(i++);
+                setTimeout(type, 50);
+            }
+        }
+        setTimeout(type, 1500);
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('navLinks').classList.remove('active');
             });
         });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
+        const scrollBtn = document.getElementById('scrollToTop');
+        const home = document.getElementById('home');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('visible', window.scrollY > home.offsetHeight);
 
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            let current = '';
+            sections.forEach(s => {
+                if (pageYOffset >= s.offsetTop - 200) current = s.id;
+            });
+            navLinks.forEach(l => {
+                l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+            });
         });
+
+        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const wrapper = document.querySelector('.carousel-wrapper');
+        const cards = document.querySelectorAll('.project-card');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dots = document.getElementById('carouselDots');
+        let idx = 0;
+        let perView = 3;
+
+        function updateView() {
+            perView = window.innerWidth <= 768 ? 1 : window.innerWidth <= 1200 ? 2 : 3;
+        }
+
+        function createDots() {
+            dots.innerHTML = '';
+            const max = Math.max(0, cards.length - perView);
+            for (let i = 0; i <= max; i++) {
+                const d = document.createElement('div');
+                d.className = 'dot' + (i === idx ? ' active' : '');
+                d.onclick = () => goTo(i);
+                dots.appendChild(d);
+            }
+        }
+
+        function goTo(i) {
+            idx = Math.max(0, Math.min(i, Math.max(0, cards.length - perView)));
+            wrapper.scrollTo({ left: idx * (cards[0].offsetWidth + 32), behavior: 'smooth' });
+            prevBtn.classList.toggle('disabled', idx === 0);
+            nextBtn.classList.toggle('disabled', idx >= Math.max(0, cards.length - perView));
+            dots.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('active', j === idx));
+        }
+
+        prevBtn.onclick = () => idx > 0 && goTo(idx - 1);
+        nextBtn.onclick = () => idx < Math.max(0, cards.length - perView) && goTo(idx + 1);
+
+        window.addEventListener('resize', () => {
+            updateView();
+            idx = Math.min(idx, Math.max(0, cards.length - perView));
+            createDots();
+            goTo(idx);
+        });
+
+        updateView();
+        createDots();
+        goTo(0);
+
+        const timeline = document.getElementById('timeline');
+        setTimeout(() => timeline.scrollLeft = timeline.scrollWidth, 100);
+        window.addEventListener('resize', () => setTimeout(() => timeline.scrollLeft = timeline.scrollWidth, 100));
     </script>
 </body>
 
